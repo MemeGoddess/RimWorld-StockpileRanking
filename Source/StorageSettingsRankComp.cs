@@ -80,14 +80,14 @@ namespace Stockpile_Ranking
 			List<Thing> haulables;
 			if (Mod.settings.returnLower)
 				haulables = map.listerThings.ThingsInGroup(ThingRequestGroup.HaulableAlways).
-					FindAll(t => !t.IsForbidden(Faction.OfPlayer) &&
+					Where(t => !t.IsForbidden(Faction.OfPlayer) &&
 					(StoreUtility.CurrentHaulDestinationOf(t)?.GetStoreSettings().Priority ?? StoragePriority.Unstored) < settings.Priority &&
-					ranks.Last().Allows(t));
+					ranks.Last().Allows(t)).ToList();
 			else
 				haulables = map.listerHaulables.ThingsPotentiallyNeedingHauling().
-					FindAll(t => 
+					Where(t => 
 					(StoreUtility.CurrentHaulDestinationOf(t)?.GetStoreSettings().Priority ?? StoragePriority.Unstored) < settings.Priority &&
-					ranks.Last().Allows(t));
+					ranks.Last().Allows(t)).ToList();
 
 			Log.Message($"haulables are {haulables.ToStringSafeEnumerable()}");
 			//Loop but don't include last filter
