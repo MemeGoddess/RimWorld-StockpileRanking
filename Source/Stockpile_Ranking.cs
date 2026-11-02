@@ -20,7 +20,7 @@ namespace Stockpile_Ranking
 
 			Harmony harmony = new Harmony("Uuugggg.rimworld.Stockpile_Ranking.main");
 
-			harmony.PatchAll();
+			harmony.PatchAll(Assembly.GetExecutingAssembly());
 		}
 
 		public override void DoSettingsWindowContents(Rect inRect)

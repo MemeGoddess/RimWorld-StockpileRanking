@@ -9,6 +9,7 @@
 		<li>1.4</li>
 		<li>1.5</li>
 		<li>1.6</li>
+		<li>1.7</li>
 	</supportedVersions>  
 	<packageId>Memegoddess.StockpileRanking</packageId>
 	<description>Set a ranking for items to prefer one over another. Only the best available will be put in the stockpile.</description>
