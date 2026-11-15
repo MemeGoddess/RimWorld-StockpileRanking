@@ -174,6 +174,10 @@ namespace Stockpile_Ranking
 			ThingFilter newFilter = new ThingFilter(settingsChangedCallback(settings.filter)); // () => settings.TryN nope that's private too ffs.
 			newFilter.CopyAllowancesFrom(filter);
 			GetRanks(settings).Add(newFilter);
+			// CopyAllowancesFrom notifies before the new filter is in the rank list,
+			// so CascadeDown cannot see it. Notify again to refresh grouped storage
+			// members and schedule the used-filter calculation with the new rank present.
+			TryNotifyChanged(settings);
 		}
 
 		public void SetRanks(StorageSettings settings, List<ThingFilter> newRanks)
